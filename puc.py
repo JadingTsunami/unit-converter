@@ -24,11 +24,14 @@ try:
         from_unit = sys.argv.pop()
     from_val  = sys.argv.pop()
 except:
-    print "Usage: " + whoami + " <from value> <from unit> [to] <to unit>"
+    print("Usage: " + whoami + " <from value> <from unit> [to] <to unit>")
 
 # extract base and prefix
 
 for prefix in prefixes.keys():
+    # skip blanks
+    if len(prefix) == 0:
+        continue
     if from_unit.startswith(prefix,0,1):
         from_prefix = prefix
     if to_unit.startswith(prefix,0,1):
@@ -51,4 +54,4 @@ else:
     to_val = (float(from_val) * prefixes[from_prefix]) / prefixes[to_prefix]
 
 
-print str(from_val) + " " + str(from_unit) + " is " + str(to_val) + " " + str(to_prefix) + str(to_base)
+print(str(from_val) + " " + str(from_unit) + " is " + str(to_val) + " " + str(to_prefix) + str(to_base))
